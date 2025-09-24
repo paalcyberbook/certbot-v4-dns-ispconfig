@@ -26,7 +26,7 @@ Installation
 
 ::
 
-    pip install certbot-dns-ispconfig
+    pip install certbot-v4-dns-ispconfig
 
 
 Named Arguments
