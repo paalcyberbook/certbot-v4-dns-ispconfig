@@ -1,7 +1,7 @@
 
 [project]
 name = "certbot-dns-ispconfig"
-version = "0.3.0"
+version = "0.4.0"
 description = "ispconfig DNS Authenticator plugin for Certbot"
 authors = [
     { name = "Matthias Bilger", email = "matthias@bilger.info" }
@@ -13,7 +13,7 @@ keywords = ["certbot", "dns", "ispconfig", "authenticator", "plugin"]
 requires-python = ">=3.8"
 dependencies = [
     "acme>=2.11.0",
-    "certbot>=2.11.0",
+    "certbot>=4.2.0",
     "setuptools",
     "requests",
     "mock",
@@ -22,7 +22,7 @@ dependencies = [
 
 [tool.poetry]
 name = "certbot-dns-ispconfig"
-version = "0.3.0"
+version = "0.4.0"
 description = "ispconfig DNS Authenticator plugin for Certbot"
 authors = ["Matthias Bilger ‹matthias@bilger.info>"]
 license = "Apache License 2.0"
@@ -33,11 +33,17 @@ keywords = ["certbot", "dns", "ispconfig", "authenticator", "plugin"]
 [tool.poetry.dependencies]
 python = ">=3.8"
 acme = ">=2.11.0"
-certbot = ">=2.11.0"
+certbot = ">=4.2.0"
 setuptools = "*"
 requests = "*"
 mock = "*"
 requests-mock = "*"
+
+[project.scripts]
+certbot-dns-ispconfig = "certbot_dns_ispconfig.dns_ispconfig:Authenticator"
+
+[project.entry-points."certbot.plugins"]
+dns-ispconfig = "certbot_dns_ispconfig.dns_ispconfig:Authenticator"
 
 [build-system]
 requires = ["hatchling"]
