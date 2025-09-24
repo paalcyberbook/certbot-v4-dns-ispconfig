@@ -3,7 +3,7 @@ certbot-dns-ispconfig
 
 ISPConfig_ DNS Authenticator plugin for Certbot v4.2.0+
 
-NOTICE: This code was forked from the original certbot-dns-ispconfig plugin https://github.com/m42e/certbot-dns-ispconfig , and was quickly updated with the help from an AI (Cursor Auto) to work with Certbot v4.2.0+ due to the original author not responding to issues and requests for updates in a timely manner.
+NOTICE: This code was forked from the original certbot-dns-ispconfig plugin https://github.com/m42e/certbot-dns-ispconfig , and was quickly updated with the help from an AI (Cursor) to work with Certbot v4.2.0+ due to the original author not responding to issues and requests for updates in a timely manner.
 
 This plugin automates the process of completing a ``dns-01`` challenge by
 creating, and subsequently removing, TXT records using the ISPConfig Remote API.

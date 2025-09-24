@@ -1,4 +1,7 @@
 """DNS Authenticator for ISPConfig."""
+
+""" Modifications by Paal A. Bergsmark <paal@kunnskap.no> supporting Certbot v4.2+ """
+
 import json
 import logging
 import time
