@@ -1,49 +1,58 @@
 
 [project]
-name = "certbot-dns-ispconfig"
+name = "certbot-v4-dns-ispconfig"
 version = "0.4.0"
-description = "ispconfig DNS Authenticator plugin for Certbot"
+description = "ispconfig DNS Authenticator plugin for Certbot v4.2+"
 authors = [
-    { name = "Matthias Bilger", email = "matthias@bilger.info" }
+    { name = "Matthias Bilger", email = "matthias@bilger.info" },
+    { name = "Paal A. Bergsmark", email = "paal@kunnskap.no" }
 ]
 license = { text = "Apache-2.0" }
 readme = "README.rst"
-homepage = "https://github.com/m42e/certbot-dns-ispconfig"
+homepage = "https://github.com/paalcyberbook/certbot-v4-dns-ispconfig"
 keywords = ["certbot", "dns", "ispconfig", "authenticator", "plugin"]
 requires-python = ">=3.8"
 dependencies = [
     "acme>=2.11.0",
     "certbot>=4.2.0",
-    "setuptools",
-    "requests",
-    "mock",
-    "requests-mock"
+    "requests>=2.25.0"
 ]
-
-[tool.poetry]
-name = "certbot-dns-ispconfig"
-version = "0.4.0"
-description = "ispconfig DNS Authenticator plugin for Certbot"
-authors = ["Matthias Bilger ‹matthias@bilger.info>"]
-license = "Apache License 2.0"
-readme = "README, rst"
-homepage = "https://github.com/m42e/certbot-dns-ispconfig"
-keywords = ["certbot", "dns", "ispconfig", "authenticator", "plugin"]
-
-[tool.poetry.dependencies]
-python = ">=3.8"
-acme = ">=2.11.0"
-certbot = ">=4.2.0"
-setuptools = "*"
-requests = "*"
-mock = "*"
-requests-mock = "*"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Security",
+    "Topic :: System :: Systems Administration",
+    "Topic :: System :: Networking"
+]
+project_urls = {
+    "Homepage": "https://github.com/paalcyberbook/certbot-v4-dns-ispconfig",
+    "Bug Reports": "https://github.com/paalcyberbook/certbot-v4-dns-ispconfig/issues",
+    "Source": "https://github.com/paalcyberbook/certbot-v4-dns-ispconfig",
+    "ForkedFrom": "https://github.com/m42e/certbot-dns-ispconfig"
+}
 
 [project.scripts]
 certbot-dns-ispconfig = "certbot_dns_ispconfig.dns_ispconfig:Authenticator"
 
 [project.entry-points."certbot.plugins"]
 dns-ispconfig = "certbot_dns_ispconfig.dns_ispconfig:Authenticator"
+
+[project.optional-dependencies]
+dev = [
+    "mock>=4.0.0",
+    "requests-mock>=1.10.0",
+    "pytest>=6.0.0",
+    "pytest-cov>=2.0.0"
+]
 
 [build-system]
 requires = ["hatchling"]
