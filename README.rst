@@ -3,8 +3,9 @@ certbot-dns-ispconfig
 
 ISPConfig_ DNS Authenticator plugin for Certbot v5.0+
 
-NOTICE: This code was forked from the original certbot-dns-ispconfig plugin https://github.com/m42e/certbot-dns-ispconfig , and was quickly updated with the help from an AI (Cursor) to work with Certbot v4.2.0+ due to the original author not responding to issues and requests for updates in a timely manner.
-(Tested working with at least certbot v4.2 and v5.0 and ispconfig v3.3.0)
+.. note::
+   This code was forked from the original certbot-dns-ispconfig plugin https://github.com/m42e/certbot-dns-ispconfig, and was quickly updated with the help from an AI (Cursor) to work with Certbot v4.2.0+ due to the original author not responding to issues and requests for updates in a timely manner.
+   - Tested working with at least certbot v4.2 and v5.0 and ispconfig v3.3.0.
 
 This plugin automates the process of completing a ``dns-01`` challenge by
 creating, and subsequently removing, TXT records using the ISPConfig Remote API.
@@ -37,18 +38,15 @@ To start using DNS authentication for ispconfig, pass the following arguments on
 certbot's command line:
 
 ============================================================= ==============================================
-``--authenticator dns-ispconfig``          select the authenticator plugin (Required)
+``--authenticator dns-ispconfig``                            select the authenticator plugin (Required)
 
-``--dns-ispconfig-credentials``         ispconfig Remote User credentials
-                                                              INI file. (Required)
+``--dns-ispconfig-credentials``                              ispconfig Remote User credentials INI file. (Required)
 
-``--dns-ispconfig-propagation-seconds`` | waiting time for DNS to propagate before asking
-                                                              | the ACME server to verify the DNS record.
-                                                              | (Default: 120, Recommended: >= 600)
+``--dns-ispconfig-propagation-seconds``                      waiting time for DNS to propagate before asking the ACME server to verify the DNS record. (Default: 120, Recommended: >= 600)
 ============================================================= ==============================================
 
-(Note that the verbose and seemingly redundant ``certbot-dns-ispconfig:`` prefix
-is currently imposed by certbot for external plugins.)
+.. note::
+   The verbose and seemingly redundant ``certbot-dns-ispconfig:`` prefix is currently imposed by certbot for external plugins.
 
 
 Credentials
@@ -63,7 +61,7 @@ An example ``credentials.ini`` file:
    dns_ispconfig_endpoint = https://you.ipsconfig.host:8080/remote/json.php
 
 The path to this file can be provided interactively or using the
-``--certbot-dns-ispconfig:dns-ispconfig-credentials`` command-line argument. Certbot
+``--dns-ispconfig-credentials`` command-line argument. Certbot
 records the path to this file for use during renewal, but does not store the
 file's contents.
 
@@ -132,6 +130,9 @@ Once that's finished, the application can be run as follows::
        --server https://acme-v02.api.letsencrypt.org/directory \
        -d example.com -d '*.example.com'
 
-It is suggested to secure the folder as follows::
-chown root:root /etc/letsencrypt/.secrets
-chmod 600 /etc/letsencrypt/.secrets
+It is suggested to secure the folder as follows:
+
+.. code-block:: bash
+
+    chown root:root /etc/letsencrypt/.secrets
+    chmod 600 /etc/letsencrypt/.secrets
