@@ -1,7 +1,7 @@
 [project]
 name = "certbot-v4-dns-ispconfig"
-version = "0.4.0"
-description = "ispconfig DNS Authenticator plugin for Certbot v4.2+"
+version = "0.4.2"
+description = "ispconfig DNS Authenticator plugin for Certbot v5.0+"
 authors = [
     { name = "Matthias Bilger", email = "matthias@bilger.info" },
     { name = "Paal A. Bergsmark", email = "paal@kunnskap.no" }

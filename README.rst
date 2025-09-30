@@ -1,9 +1,10 @@
 certbot-dns-ispconfig
 =====================
 
-ISPConfig_ DNS Authenticator plugin for Certbot v4.2.0+
+ISPConfig_ DNS Authenticator plugin for Certbot v5.0+
 
 NOTICE: This code was forked from the original certbot-dns-ispconfig plugin https://github.com/m42e/certbot-dns-ispconfig , and was quickly updated with the help from an AI (Cursor) to work with Certbot v4.2.0+ due to the original author not responding to issues and requests for updates in a timely manner.
+(Tested working with at least certbot v4.2 and v5.0 and ispconfig v3.3.0)
 
 This plugin automates the process of completing a ``dns-01`` challenge by
 creating, and subsequently removing, TXT records using the ISPConfig Remote API.
@@ -36,12 +37,12 @@ To start using DNS authentication for ispconfig, pass the following arguments on
 certbot's command line:
 
 ============================================================= ==============================================
-``--authenticator certbot-dns-ispconfig:dns-ispconfig``          select the authenticator plugin (Required)
+``--authenticator dns-ispconfig``          select the authenticator plugin (Required)
 
-``--certbot-dns-ispconfig:dns-ispconfig-credentials``         ispconfig Remote User credentials
+``--dns-ispconfig-credentials``         ispconfig Remote User credentials
                                                               INI file. (Required)
 
-``--certbot-dns-ispconfig:dns-ispconfig-propagation-seconds`` | waiting time for DNS to propagate before asking
+``--dns-ispconfig-propagation-seconds`` | waiting time for DNS to propagate before asking
                                                               | the ACME server to verify the DNS record.
                                                               | (Default: 120, Recommended: >= 600)
 ============================================================= ==============================================
@@ -57,9 +58,9 @@ An example ``credentials.ini`` file:
 
 .. code-block:: ini
 
-   certbot_dns_ispconfig:dns_ispconfig_username = myremoteuser
-   certbot_dns_ispconfig:dns_ispconfig_password = verysecureremoteuserpassword
-   certbot_dns_ispconfig:dns_ispconfig_endpoint = https://you.ipsconfig.host:8080/remote/json.php
+   dns_ispconfig_username = myremoteuser
+   dns_ispconfig_password = verysecureremoteuserpassword
+   dns_ispconfig_endpoint = https://you.ipsconfig.host:8080/remote/json.php
 
 The path to this file can be provided interactively or using the
 ``--certbot-dns-ispconfig:dns-ispconfig-credentials`` command-line argument. Certbot
@@ -90,9 +91,9 @@ To acquire a single certificate for both ``example.com`` and
 .. code-block:: bash
 
    certbot certonly \
-     --authenticator certbot-dns-ispconfig:dns-ispconfig \
-     --certbot-dns-ispconfig:dns-ispconfig-credentials /etc/letsencrypt/.secrets/domain.tld.ini \
-     --certbot-dns-ispconfig:dns-ispconfig-propagation-seconds 900 \
+     --authenticator dns-ispconfig \
+     --dns-ispconfig-credentials /etc/letsencrypt/.secrets/domain.tld.ini \
+     --dns-ispconfig-propagation-seconds 900 \
      --server https://acme-v02.api.letsencrypt.org/directory \
      --agree-tos \
      --rsa-key-size 4096 \
@@ -109,7 +110,7 @@ create an empty directory with the following ``Dockerfile``:
 .. code-block:: docker
 
     FROM certbot/certbot
-    RUN pip install certbot-dns-ispconfig
+    RUN pip install certbot-v4-dns-ispconfig
 
 Proceed to build the image::
 
@@ -122,9 +123,9 @@ Once that's finished, the application can be run as follows::
        -v /etc/letsencrypt:/etc/letsencrypt \
        --cap-drop=all \
        certbot/dns-ispconfig certonly \
-       --authenticator certbot-dns-ispconfig:dns-ispconfig \
-       --certbot-dns-ispconfig:dns-ispconfig-propagation-seconds 900 \
-       --certbot-dns-ispconfig:dns-ispconfig-credentials \
+       --authenticator dns-ispconfig \
+       --dns-ispconfig-propagation-seconds 900 \
+       --dns-ispconfig-credentials \
            /etc/letsencrypt/.secrets/domain.tld.ini \
        --no-self-upgrade \
        --keep-until-expiring --non-interactive --expand \
