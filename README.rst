@@ -5,7 +5,8 @@ ISPConfig_ DNS Authenticator plugin for Certbot v5.0+
 
 .. note::
    This code was forked from the original certbot-dns-ispconfig plugin https://github.com/m42e/certbot-dns-ispconfig, and was quickly updated with the help from an AI (Cursor) to work with Certbot v4.2.0+ due to the original author not responding to issues and requests for updates in a timely manner.
-   - Tested working with at least certbot v4.2 and v5.0 and ispconfig v3.3.0.
+   
+   Tested working with at least certbot v4.2 and v5.0 and ispconfig v3.3.0.
 
 This plugin automates the process of completing a ``dns-01`` challenge by
 creating, and subsequently removing, TXT records using the ISPConfig Remote API.
@@ -21,7 +22,6 @@ In the `System -> Remote Users` you have to have a user, with the following righ
 
 
 .. _ISPConfig: https://www.ispconfig.org/
-.. _certbot: https://certbot.eff.org/
 
 Installation
 ------------
@@ -37,13 +37,9 @@ Named Arguments
 To start using DNS authentication for ispconfig, pass the following arguments on
 certbot's command line:
 
-============================================================= ==============================================
-``--authenticator dns-ispconfig``                            select the authenticator plugin (Required)
-
-``--dns-ispconfig-credentials``                              ispconfig Remote User credentials INI file. (Required)
-
-``--dns-ispconfig-propagation-seconds``                      waiting time for DNS to propagate before asking the ACME server to verify the DNS record. (Default: 120, Recommended: >= 600)
-============================================================= ==============================================
+- ``--authenticator dns-ispconfig`` - select the authenticator plugin (Required)
+- ``--dns-ispconfig-credentials`` - ispconfig Remote User credentials INI file. (Required)  
+- ``--dns-ispconfig-propagation-seconds`` - waiting time for DNS to propagate before asking the ACME server to verify the DNS record. (Default: 120, Recommended: >= 600)
 
 .. note::
    The verbose and seemingly redundant ``certbot-dns-ispconfig:`` prefix is currently imposed by certbot for external plugins.
